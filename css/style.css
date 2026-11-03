@@ -1,0 +1,18 @@
+:root {
+  --cor-principal: #2563eb;
+  --cor-texto: #111827;
+  --espacamento: 16px;
+  --raio: 8px;
+}
+
+body {
+  color: var(--cor-texto);
+  background-color: #f8fafc;
+}
+
+.botao {
+  background-color: var(--cor-principal);
+  color: white;
+  padding: var(--espacamento);
+  border-radius: var(--raio);
+}

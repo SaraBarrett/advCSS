@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS</title>
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+      defer
+    ></script>
+    <script src="js/supase.js" defer></script>
+    <script src="js/script.js" defer></script>
+  </head>
+  <body>
+    <button id="modules">Módulos 📚</button>
+    <form id="form-modulo">
+      <label for="titulo-modulo">Título do módulo</label>
+
+      <input
+        type="text"
+        id="titulo-modulo"
+        name="title"
+        placeholder="Ex.: Fundamentos de JavaScript"
+        required
+      />
+
+      <button type="submit" class="botao">Adicionar módulo</button>
+    </form>
+
+    <p id="mensagem" role="status"></p>
+  </body>
+</html>
