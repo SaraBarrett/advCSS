@@ -67,7 +67,7 @@ body {
     background-color: gray;
     z-index: -1;
     transition: transform 1s;
-    border-radius: 8px 8px 0px 0px;
+    border-radius: 8px 8px 0px 0px;    
 }
 
 .location-details {

@@ -1,35 +1,307 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JS</title>
-    <link rel="stylesheet" href="css/style.css" />
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
 
-    <!-- js -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-      defer
-    ></script>
-    <script src="js/supase.js" defer></script>
-    <script src="js/script.js" defer></script>
-  </head>
-  <body>
-    <button id="modules">Módulos 📚</button>
-    <form id="form-modulo">
-      <label for="titulo-modulo">Título do módulo</label>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-      <input
-        type="text"
-        id="titulo-modulo"
-        name="title"
-        placeholder="Ex.: Fundamentos de JavaScript"
-        required
-      />
+  <meta
+    name="description"
+    content="Apresentação da formação UX/UI Design — Edição Web."
+  >
 
-      <button type="submit" class="botao">Adicionar módulo</button>
-    </form>
+  <title>UX/UI Design | Edição Web</title>
 
-    <p id="mensagem" role="status"></p>
-  </body>
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="js/script.js"></script>
+</head>
+
+<body>
+  <!-- CABEÇALHO -->
+
+  <header>
+    <div class="container navegacao">
+      <a class="logo" href="#inicio">
+        UX/UI <span>· Edição Web</span>
+      </a>
+
+      <nav aria-label="Navegação principal">
+        <a href="#conteudos">Conteúdos</a>
+        <a href="#demonstracao">Demonstração</a>
+        <a href="#avaliacao">Avaliação</a>
+      </nav>
+
+      <button
+        class="botao-tema"
+        id="botao-tema"
+        type="button"
+        aria-pressed="false"
+      >
+        Modo escuro
+      </button>
+    </div>
+  </header>
+
+  <main class="container" id="inicio">
+
+    <!-- APRESENTAÇÃO -->
+
+    <div class="hero">
+      <div>
+        <div class="etiqueta">IEFP · Formação</div>
+
+        <h1>
+          UX/UI Design<br>
+          <span>Edição Web</span>
+        </h1>
+
+        <p class="introducao">
+          Da organização do projeto às interações da interface:
+          vamos construir experiências web consistentes,
+          dinâmicas e apelativas.
+        </p>
+
+        <a class="botao" href="#conteudos">
+          Explorar os conteúdos →
+        </a>
+
+        <p class="formadora">
+          Formadora: Sara Monteiro<br>
+
+          <a href="mailto:saramarmonteiro@gmail.com">
+            saramarmonteiro@gmail.com
+          </a>
+        </p>
+      </div>
+
+      <div class="painel">
+        <div class="janela" aria-hidden="true">
+          <div class="barra-janela">● ● ●</div>
+
+          <div class="interface">
+            <div class="bloco-principal"></div>
+
+            <div class="mini-grid">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+        <p class="legenda">
+          Estrutura, identidade visual e interação —
+          no mesmo projeto.
+        </p>
+      </div>
+    </div>
+
+    <!-- CONTEÚDOS -->
+
+    <section
+      id="conteudos"
+      aria-labelledby="titulo-conteudos"
+    >
+      <div class="cabecalho-seccao">
+        <div class="etiqueta">Percurso de aprendizagem</div>
+
+        <h2 id="titulo-conteudos">
+          O que vamos aprender
+        </h2>
+
+        <p>
+          Quatro áreas de trabalho para desenvolver
+          os projetos web.
+        </p>
+      </div>
+
+      <div class="grid">
+        <article class="cartao">
+          <span class="numero">01 / ORGANIZAÇÃO</span>
+
+          <h3>Git para projetos web</h3>
+
+          <p>
+            Trabalhar a organização e a evolução do código
+            dos projetos com recurso ao Git.
+          </p>
+
+          <div class="etiquetas">
+            <span class="etiqueta-conteudo">Git</span>
+            <span class="etiqueta-conteudo">Projetos web</span>
+          </div>
+        </article>
+
+        <article class="cartao">
+          <span class="numero">02 / PERSONALIZAÇÃO</span>
+
+          <h3>Temas e modo noturno</h3>
+
+          <p>
+            Criar interfaces com diferentes temas e explorar
+            a alternância entre o modo claro e o modo escuro.
+          </p>
+
+          <div class="etiquetas">
+            <span class="etiqueta-conteudo">Temas</span>
+            <span class="etiqueta-conteudo">Modo noturno</span>
+          </div>
+        </article>
+
+        <article class="cartao">
+          <span class="numero">03 / CONSISTÊNCIA</span>
+
+          <h3>Design tokens</h3>
+
+          <p>
+            Organizar as decisões visuais do projeto,
+            como cores, espaçamentos e cantos arredondados,
+            em valores reutilizáveis.
+          </p>
+
+          <div class="etiquetas">
+            <span class="etiqueta-conteudo">Cores</span>
+            <span class="etiqueta-conteudo">Espaçamento</span>
+            <span class="etiqueta-conteudo">Identidade visual</span>
+          </div>
+        </article>
+
+        <article class="cartao">
+          <span class="numero">04 / INTERAÇÃO</span>
+
+          <h3>Interações e animações em CSS</h3>
+
+          <p>
+            Explorar mudanças de estado, transições e animações
+            para dar resposta às ações do utilizador.
+          </p>
+
+          <div class="etiquetas">
+            <span class="etiqueta-conteudo">:hover</span>
+            <span class="etiqueta-conteudo">Transitions</span>
+            <span class="etiqueta-conteudo">Animations</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- DEMONSTRAÇÃO -->
+
+    <section
+      id="demonstracao"
+      aria-labelledby="titulo-demonstracao"
+    >
+      <div class="painel demonstracao">
+        <div>
+          <div class="etiqueta">
+            Experimenta nesta página
+          </div>
+
+          <h2 id="titulo-demonstracao">
+            Uma interface que reage
+          </h2>
+
+          <p>
+            Usa o botão no topo para alternar o tema.
+            Depois, passa o rato pelo botão de demonstração
+            ou seleciona-o com a tecla Tab.
+          </p>
+
+          <pre><code>.botao-demo {
+  transition-property: background-color, transform;
+  transition-duration: 750ms;
+}
+
+.botao-demo:hover,
+.botao-demo:focus-visible {
+  background-color: #246f44;
+  transform: scale(1.06);
+}</code></pre>
+        </div>
+
+        <div class="area-demonstracao">
+          <button
+            type="button"
+            class="botao-demo"
+            id="botao-demo"
+          >
+            Experimenta a transição
+          </button>
+
+          <p id="mensagem" role="status">
+            Observa a mudança de cor e de escala.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AVALIAÇÃO -->
+
+    <section
+      id="avaliacao"
+      aria-labelledby="titulo-avaliacao"
+    >
+      <div class="cabecalho-seccao">
+        <div class="etiqueta">
+          Como será a avaliação
+        </div>
+
+        <h2 id="titulo-avaliacao">
+          Participar, criar e apresentar
+        </h2>
+      </div>
+
+      <div class="grid">
+        <article class="cartao">
+          <div class="percentagem">50%</div>
+
+          <h3>Trabalho em aula</h3>
+
+          <p>
+            Participação, motivação e exercícios
+            realizados em aula.
+          </p>
+        </article>
+
+        <article class="cartao">
+          <div class="percentagem">50%</div>
+
+          <h3>Projeto prático e defesa</h3>
+
+          <p>
+            Desenvolvimento do projeto prático
+            e respetiva defesa.
+          </p>
+        </article>
+      </div>
+
+      <aside class="aviso">
+        <strong>Utilização de inteligência artificial</strong>
+
+        <p>
+          Evitar o uso abusivo e/ou não pedagógico
+          de ferramentas de IA.
+        </p>
+      </aside>
+    </section>
+  </main>
+
+  <!-- RODAPÉ -->
+
+  <footer>
+    <div class="container rodape">
+      <span>
+        Edição Web | IEFP | Sara Monteiro
+      </span>
+
+      <a href="#inicio">
+        Voltar ao início ↑
+      </a>
+    </div>
+  </footer>
+</body>
 </html>

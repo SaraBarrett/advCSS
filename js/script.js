@@ -1,93 +1,77 @@
-const form = document.getElementById('form-modulo');
-const mensagem = document.getElementById('mensagem');
-const botao = form.querySelector('button[type="submit"]');
-const modules = document.querySelector('#modules');
+ // Elementos da interface
+    const raiz = document.documentElement;
+    const botaoTema = document.getElementById("botao-tema");
+    const botaoDemo = document.getElementById("botao-demo");
+    const mensagem = document.getElementById("mensagem");
 
+    // Preferência de tema do sistema operativo
+    const preferenciaSistema = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
 
-//carregar módulos
-async function loadModules() {
-  const { data, error } = await supabaseClient
-    .from('software_developer_modules')
-    .select('*')
-    .order('created_at', {
-      ascending: false
+    let escolhaManual = false;
+
+    // Aplicar o tema e atualizar o botão
+    function aplicarTema(escuro) {
+      raiz.dataset.theme = escuro ? "dark" : "light";
+
+      botaoTema.setAttribute(
+        "aria-pressed",
+        String(escuro)
+      );
+
+      botaoTema.textContent = escuro
+        ? "Modo claro"
+        : "Modo escuro";
+    }
+
+    // Recuperar a preferência guardada
+    let temaGuardado = null;
+
+    try {
+      temaGuardado = localStorage.getItem("tema-edicao-web");
+    } catch {
+      // A página continua funcional se o armazenamento
+      // não estiver disponível.
+    }
+
+    escolhaManual =
+      temaGuardado === "dark" ||
+      temaGuardado === "light";
+
+    aplicarTema(
+      escolhaManual
+        ? temaGuardado === "dark"
+        : preferenciaSistema.matches
+    );
+
+    // Alternar entre modo claro e modo escuro
+    botaoTema.addEventListener("click", () => {
+      const escuro = raiz.dataset.theme !== "dark";
+
+      escolhaManual = true;
+      aplicarTema(escuro);
+
+      try {
+        localStorage.setItem(
+          "tema-edicao-web",
+          escuro ? "dark" : "light"
+        );
+      } catch {
+        // A alternância funciona mesmo sem guardar o tema.
+      }
     });
 
-  if (error) {
-    console.error('Erro ao carregar os módulos:', error);
-    return;
-  }
-
-  console.table(data);
-  console.log(data);
-
-}
-
-
-
-form.addEventListener('submit', async (evento) => {
-  evento.preventDefault();
-
-  const titulo = form.title.value.trim();
-
-  if (!titulo) {
-    mensagem.textContent = 'Introduz um título.';
-    return;
-  }
-
-  botao.disabled = true;
-
-  const id = crypto.randomUUID();
-  const slug = titulo
-    .normalize('NFD')
-    .toLowerCase()
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
-
-  const { error } = await supabaseClient
-    .from('software_developer_modules')
-    .insert({
-      code: `SD-${id}`,
-      title: titulo,
-      slug: `${slug}-${id}`,
-      status: 'published'
+    // Acompanhar o tema do sistema enquanto
+    // o utilizador não tiver escolhido outro.
+    preferenciaSistema.addEventListener("change", (evento) => {
+      if (!escolhaManual) {
+        aplicarTema(evento.matches);
+      }
     });
 
-  if (error) {
-    mensagem.textContent = error.message;
-  } else {
-    form.reset();
-    mensagem.textContent = 'Módulo adicionado!';
-  }
-
-  botao.disabled = false;
-});
-
-
-async function deleteModule(id) {
-  const { error } = await supabaseClient
-    .from('software_developer_modules')
-    .delete()
-    .eq('id', id);
-
-  if (error) {
-    mensagem.textContent = error.message;
-  } else {
-    mensagem.textContent = 'Módulo eliminado!';
-  }
-}
-
-async function updateModule(id, titulo) {
-  const { error } = await supabaseClient
-    .from('software_developer_modules')
-    .update({ title: titulo })
-    .eq('id', id);
-
-  if (error) {
-    mensagem.textContent = error.message;
-  } else {
-    mensagem.textContent = 'Módulo atualizado!';
-  }
-}
-modules.addEventListener('click', loadModules);
+    // Mensagem da demonstração
+    botaoDemo.addEventListener("click", () => {
+      mensagem.textContent =
+        "Boa! Experimenta também alternar o tema da página.";
+    });

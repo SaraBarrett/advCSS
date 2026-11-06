@@ -1,18 +1,498 @@
-:root {
-  --cor-principal: #2563eb;
-  --cor-texto: #111827;
-  --espacamento: 16px;
-  --raio: 8px;
-}
+ /* ========================================
+       DESIGN TOKENS — TEMA CLARO
+       ======================================== */
 
-body {
-  color: var(--cor-texto);
-  background-color: #f8fafc;
-}
+    :root {
+      color-scheme: light;
 
-.botao {
-  background-color: var(--cor-principal);
-  color: white;
-  padding: var(--espacamento);
-  border-radius: var(--raio);
-}
+      --cor-fundo: #f5f8f7;
+      --cor-superficie: #ffffff;
+      --cor-texto: #202f32;
+      --cor-texto-secundario: #506467;
+      --cor-destaque: #22635c;
+      --cor-suave: #e0eeea;
+      --cor-linha: #cedbd7;
+
+      --raio: 20px;
+      --espaco: 24px;
+      --duracao: 250ms;
+
+      --sombra: 0 12px 36px rgb(23 58 48 / 8%);
+    }
+
+    /* ========================================
+       DESIGN TOKENS — TEMA ESCURO
+       ======================================== */
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+
+      --cor-fundo: #111d20;
+      --cor-superficie: #1b2b2f;
+      --cor-texto: #eef6f4;
+      --cor-texto-secundario: #b5cac5;
+      --cor-destaque: #96d6c6;
+      --cor-suave: #263e40;
+      --cor-linha: #3d5557;
+
+      --sombra: 0 12px 36px rgb(0 0 0 / 15%);
+    }
+
+    /* ========================================
+       ESTILOS GERAIS
+       ======================================== */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+
+      transition:
+        background-color var(--duracao),
+        color var(--duracao);
+    }
+
+    a {
+      color: var(--cor-destaque);
+      text-underline-offset: 4px;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--cor-destaque);
+      outline-offset: 5px;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin-inline: auto;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin: 18px 0 24px;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      letter-spacing: -0.05em;
+    }
+
+    h1 span {
+      color: var(--cor-destaque);
+    }
+
+    h2 {
+      margin: 8px 0 20px;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+    }
+
+    h3 {
+      margin: 12px 0;
+    }
+
+    p {
+      margin: 0 0 20px;
+    }
+
+    section {
+      padding-block: 55px;
+    }
+
+    .etiqueta {
+      color: var(--cor-destaque);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* ========================================
+       CABEÇALHO E NAVEGAÇÃO
+       ======================================== */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+
+      background-color: var(--cor-superficie);
+      border-bottom: 1px solid var(--cor-linha);
+    }
+
+    .navegacao {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      min-height: 80px;
+      padding-block: 12px;
+    }
+
+    .logo {
+      color: var(--cor-texto);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--cor-destaque);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    nav a {
+      font-size: 0.92rem;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* ========================================
+       BOTÕES
+       ======================================== */
+
+    button,
+    .botao {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 12px 20px;
+
+      border: 1px solid var(--cor-destaque);
+      border-radius: 12px;
+
+      background-color: var(--cor-destaque);
+      color: var(--cor-superficie);
+
+      font: inherit;
+      font-weight: 700;
+      text-decoration: none;
+
+      cursor: pointer;
+
+      transition:
+        transform var(--duracao),
+        background-color var(--duracao),
+        box-shadow var(--duracao);
+    }
+
+    button:hover,
+    .botao:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--sombra);
+    }
+
+    .botao-tema {
+      background-color: var(--cor-suave);
+      color: var(--cor-texto);
+      border-color: var(--cor-linha);
+      font-size: 0.9rem;
+    }
+
+    /* ========================================
+       APRESENTAÇÃO INICIAL
+       ======================================== */
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      align-items: center;
+      gap: 50px;
+
+      padding: 90px 0 70px;
+    }
+
+    .introducao {
+      max-width: 58ch;
+      color: var(--cor-texto-secundario);
+      font-size: 1.15rem;
+    }
+
+    .formadora {
+      margin-top: 28px;
+      color: var(--cor-texto-secundario);
+      font-size: 0.92rem;
+    }
+
+    .painel {
+      padding: 28px;
+
+      background-color: var(--cor-superficie);
+      border: 1px solid var(--cor-linha);
+      border-radius: var(--raio);
+
+      box-shadow: var(--sombra);
+    }
+
+    /* Ilustração de uma interface feita em CSS */
+
+    .janela {
+      overflow: hidden;
+      border: 1px solid var(--cor-linha);
+      border-radius: 14px;
+    }
+
+    .barra-janela {
+      padding: 12px;
+      background-color: var(--cor-suave);
+      color: var(--cor-destaque);
+      letter-spacing: 5px;
+    }
+
+    .interface {
+      padding: 22px;
+    }
+
+    .bloco-principal {
+      height: 80px;
+      background-color: var(--cor-destaque);
+      border-radius: 8px;
+      opacity: 0.8;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .mini-grid span {
+      height: 65px;
+      background-color: var(--cor-suave);
+      border-radius: 8px;
+    }
+
+    .legenda {
+      margin: 18px 0 0;
+      color: var(--cor-texto-secundario);
+      font-size: 0.9rem;
+    }
+
+    /* ========================================
+       CARTÕES DOS CONTEÚDOS
+       ======================================== */
+
+    .cabecalho-seccao {
+      max-width: 680px;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--espaco);
+    }
+
+    .cartao {
+      padding: 30px;
+
+      background-color: var(--cor-superficie);
+      border: 1px solid var(--cor-linha);
+      border-radius: var(--raio);
+
+      transition:
+        transform var(--duracao),
+        box-shadow var(--duracao);
+    }
+
+    .cartao:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--sombra);
+    }
+
+    .numero {
+      color: var(--cor-destaque);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .cartao p {
+      color: var(--cor-texto-secundario);
+    }
+
+    .etiquetas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .etiqueta-conteudo {
+      padding: 4px 10px;
+
+      background-color: var(--cor-suave);
+      color: var(--cor-destaque);
+
+      border-radius: 7px;
+      font-size: 0.8rem;
+    }
+
+    /* ========================================
+       DEMONSTRAÇÃO DE TRANSIÇÕES
+       ======================================== */
+
+    .demonstracao {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 35px;
+    }
+
+    .demonstracao > * {
+      min-width: 0;
+    }
+
+    pre {
+      overflow-x: auto;
+      padding: 22px;
+
+      background-color: var(--cor-fundo);
+      border: 1px solid var(--cor-linha);
+      border-radius: 12px;
+
+      font-size: 0.9rem;
+    }
+
+    .area-demonstracao {
+      padding: 36px;
+      background-color: var(--cor-suave);
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .area-demonstracao p {
+      margin: 18px 0 0;
+      color: var(--cor-texto-secundario);
+      font-size: 0.9rem;
+    }
+
+    .botao-demo {
+      background-color: #c55514;
+      color: white;
+      border-color: transparent;
+
+      transition-property: background-color, transform;
+      transition-duration: 750ms;
+    }
+
+    .botao-demo:hover,
+    .botao-demo:focus-visible {
+      background-color: #246f44;
+      transform: scale(1.06);
+    }
+
+    /* ========================================
+       AVALIAÇÃO
+       ======================================== */
+
+    .percentagem {
+      color: var(--cor-destaque);
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .aviso {
+      margin-top: 24px;
+      padding: 18px 24px;
+
+      background-color: var(--cor-suave);
+      border-left: 4px solid var(--cor-destaque);
+      border-radius: 0 12px 12px 0;
+    }
+
+    /* ========================================
+       RODAPÉ
+       ======================================== */
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--cor-linha);
+
+      color: var(--cor-texto-secundario);
+      font-size: 0.9rem;
+    }
+
+    .rodape {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ========================================
+       ADAPTAÇÃO A ECRÃS PEQUENOS
+       ======================================== */
+
+    @media (max-width: 760px) {
+      .hero,
+      .demonstracao,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 45px;
+        gap: 30px;
+      }
+
+      .navegacao {
+        justify-content: center;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 14px;
+      }
+
+      section {
+        padding-block: 35px;
+      }
+
+      html {
+        scroll-padding-top: 190px;
+      }
+    }
+
+    /* Respeitar a preferência por movimento reduzido */
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
